@@ -1,7 +1,7 @@
 # IHHook
-(THE JAPANESE VERSION OF THE GAME DOESN'T WORK YET)
-Version r17-fork - 2025-08-02 (see github for full changes)  
-FoxString hook.  
+Version r17-fork - 2025-08-02 (see github for full changes) (THE JAPANESE VERSION OF THE GAME DOESN'T WORK YET)
+
+FoxString hook.
 Bunch of character, buddy, vehicle change hooks.  
 ihhook_config.lua (next to ihhook/dinput8 dll) - allows some startup settings of ihhook to be set.  
 FNV Hash logging.  
