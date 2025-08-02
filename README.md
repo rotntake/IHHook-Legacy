@@ -1,23 +1,26 @@
 # IHHook
-Version r17 - 2022-07-02 (see github for full changes)  
+Version r17-fork - 2025-08-02 (see github for full changes)  
 FoxString hook.  
 Bunch of character, buddy, vehicle change hooks.  
 ihhook_config.lua (next to ihhook/dinput8 dll) - allows some startup settings of ihhook to be set.  
 FNV Hash logging.  
 Ghidra scripts to export addresses, func defs, and a refactor and reduction of required steps to get hooks running.  
 
-For MGSV version 1.15 (in title screen), 1.0.15.3 in exe  
+For MGSV version 1.15 (in title screen), 1.0.15.0 in exe  
 For Infinite Heaven r257  
 
 Previously bundled with Infinite Heaven, IHHook has been split into a seperate install and nexus page to isolate feedback and issues.
 
-IHHook source: https://github.com/TinManTex/IHHook
-IHHook mod: https://www.nexusmods.com/metalgearsolidvtpp/mods/1226
-Infinite Heaven mod: https://www.nexusmods.com/metalgearsolidvtpp/mods/45
+#### *Repos & Mods*
+
+* IHHook source: https://github.com/TinManTex/IHHook
+
+* IHHook mod: https://www.nexusmods.com/metalgearsolidvtpp/mods/1226
+
+* Infinite Heaven mod: https://www.nexusmods.com/metalgearsolidvtpp/mods/45
 
 ## Description 
 A proxy dll (of dinput8.dll) that loads with MGSV to provide extended features for modding.
-
 
 ## Dependencies
 ### Runtime
@@ -28,6 +31,8 @@ https://aka.ms/vs/17/release/VC_redist.x64.exe
 MSVS v141 - VS 2017 C++ x64/x86 build tools (v14.16)  
 Windows 10 SDK (10.0.17763.0)  
 (Install via Visual Studio Installer > Individual Components)  
+
+---
 
 ## IHHook features
 See this youtube playlist for features that are visually demonstratable  
