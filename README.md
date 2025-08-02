@@ -1,4 +1,5 @@
 # IHHook
+(THE JAPANESE VERSION OF THE GAME DOESN'T WORK YET)
 Version r17-fork - 2025-08-02 (see github for full changes)  
 FoxString hook.  
 Bunch of character, buddy, vehicle change hooks.  
