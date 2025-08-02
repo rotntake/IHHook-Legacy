@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ModEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="IHHook" Version="r17-fork" Author="TinManTex (forked by rotntake)" Website="https://www.nexusmods.com/metalgearsolidvtpp/mods/1226/">
+<ModEntry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="IHHook" Version="r17-fork" Author="TinManTex (forked by rotntake)" Website="https://github.com/rotntake/IHHook-Legacy">
   <MGSVersion Version="1.0.15.0" />
   <SBVersion Version="0.0.0.0" />
   <Description># IHHook (Fork by rotntake)
