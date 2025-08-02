@@ -336,6 +336,7 @@ namespace IHHook {
 		void CreateHooks() {
 			spdlog::debug(__func__);
 
+			
 			CREATE_HOOK(PreparePlayerVehicleInSortie)
 			CREATE_HOOK(PreparePlayerVehicleInGame)
 

@@ -177,7 +177,8 @@ namespace IHHook {
 			if (addressSet["StrCode64"] == NULL) {
 				spdlog::warn("addr fail: addressSet[\"StrCode64\"] == NULL");
 			}
-			else {					
+			else {
+				spdlog::debug("  StrCode64 OK, value = 0x{:x}", (uintptr_t)addressSet["StrCode64"]);
 				//DEBUGNOW TEST
 				char* langId = "tpp_loc_afghan";
 				long long tpp_loc_afghanS64 = StrCode64(langId, strlen(langId));
@@ -201,13 +202,14 @@ namespace IHHook {
 				spdlog::warn("addr == NULL");
 			}
 			else {
+				
 				CREATE_HOOK(GetFreeRoamLangId)
 				CREATE_HOOK(UnkPrintFuncStubbedOut)
 				CREATE_HOOK(nullsub_2)
 
 				ENABLEHOOK(GetFreeRoamLangId)
-
 				ENABLEHOOK(UnkPrintFuncStubbedOut)//DEBUGNOW
+				
 #ifdef _DEBUG
 				//ENABLEHOOK(nullsub_2)//DEBUGNOW
 #endif // DEBUG

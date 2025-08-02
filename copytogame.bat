@@ -1,4 +1,4 @@
-set gamePath=C:\Games\Steam\steamapps\common\MGS_TPP
+set gamePath=E:\MGS_TPP
 set proxyName=dinput8.dll
 set targetDir=%~1
 set targetFile=%~2

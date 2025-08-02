@@ -1,6 +1,10 @@
 IHHook changelog 
 - just broad sweep changes, otherwise just look at the github commits.
 
+Version r17-fork 2025-08-02 (see GitHub for full changes)
+Complete change of 1.0.15.3 addresses to 1.0.15.0 addresses.
+Blocked Japanese versions and versions that are later or previous to exe V1.0.15.0.
+
 Version r17 - 2022-07-02 (see github for full changes)
 FoxString hook.
 Bunch of character, buddy, vehicle change hooks.

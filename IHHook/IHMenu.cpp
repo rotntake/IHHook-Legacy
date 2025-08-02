@@ -324,7 +324,7 @@ namespace IHHook {
 		void SetInitialText() {
 			windowTitle = "Infinite Heaven";
 
-			menuTitle = std::string("IHHook r") + std::to_string(Version);
+			menuTitle = std::string("IHHook r") + std::to_string(Version) + std::string("-fork");
 
 			menuItems.clear();
 			//menuItems.push_back(std::string("IHHook r") + std::to_string(Version));

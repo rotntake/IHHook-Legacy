@@ -36,7 +36,7 @@
 
 #include "Util.h"//config 
 
-#include "hooks/mgsvtpp_adresses_1_0_15_3_en.h"
+#include "hooks/mgsvtpp_adresses_1_0_15_0_en.h"
 #include "hooks/mgsvtpp_adresses_1_0_15_3_jp.h"
 #include "hooks/mgsvtpp_patterns.h"
 
@@ -220,13 +220,12 @@ namespace IHHook {
 		int versionDelta = OS::CheckVersionDelta(IHHook::GameVersion, exeVersionStr);
 		if (versionDelta != 0) {
 			isTargetExe = false;
-
 			errorMessages.push_back("ERROR: IHHook->exe version mismatch");
 			errorMessages.push_back("Infinite Heaven will continue to load");
 			errorMessages.push_back("with some limitations.");
 			errorMessages.push_back("Including this menu not working in-game.");
 			if (versionDelta > 0) {
-				errorMessages.push_back("Please update MGSV.");
+				errorMessages.push_back("Please make sure MGSV is V1.0.15.0.");
 			}
 			else if (versionDelta < 0) {
 				errorMessages.push_back("Please update Infinte Heaven.");
@@ -239,7 +238,7 @@ namespace IHHook {
 			SetCursor(true);//tex DEBUGNOW imgui window currently wont auto dismiss, so give user cursor
 		} 
 		else {
-			if (lang != "en" && lang != "jp" ) {//DEBUGNOW
+			if (lang != "en") {//DEBUGNOW
 				isTargetExe = false;
 
 				errorMessages.push_back("WARNING: Unknown lang version");
@@ -276,7 +275,7 @@ namespace IHHook {
 			//GAMEVERSION
 			//DEBUGNOW TODO: an adresset map too I guess
 			if (lang == "en") {
-				addressSet = mgsvtpp_adresses_1_0_15_3_en;
+				addressSet = mgsvtpp_adresses_1_0_15_0_en;
 			}
 			else {
 				if (lang == "jp") {
@@ -303,7 +302,7 @@ namespace IHHook {
 
 			auto tend = std::chrono::high_resolution_clock::now();
 			auto durationShort = std::chrono::duration_cast<std::chrono::microseconds>(tend - tstart).count();
-			spdlog::debug("IHHook::CreateHooks total time(microseconds): {}µs", durationShort);
+			spdlog::debug("IHHook::CreateHooks total time(microseconds): {}ï¿½s", durationShort);
 		}//if doHooks
 
 		PipeServer::StartPipeServer();

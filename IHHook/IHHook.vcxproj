@@ -166,7 +166,7 @@ copy /Y "$(SolutionDir)Readme.md" "$(SolutionDir)makebite\Readme.txt"</Command>
     <ClInclude Include="D3D11Hook.hpp" />
     <ClInclude Include="Hooking.Patterns\Hooking.Patterns.h" />
     <ClInclude Include="HookMacros.h" />
-    <ClInclude Include="hooks\mgsvtpp_adresses_1_0_15_3_en.h" />
+    <ClInclude Include="hooks\mgsvtpp_adresses_1_0_15_0_en.h" />
     <ClInclude Include="hooks\mgsvtpp_adresses_1_0_15_3_jp.h" />
     <ClInclude Include="hooks\mgsvtpp_func_typedefs.h" />
     <ClInclude Include="hooks\mgsvtpp_func_typedefs_manual.h" />

@@ -195,7 +195,7 @@
     <ClInclude Include="hooks\mgsvtpp_patterns.h">
       <Filter>Header Files\hooks</Filter>
     </ClInclude>
-    <ClInclude Include="hooks\mgsvtpp_adresses_1_0_15_3_en.h">
+    <ClInclude Include="hooks\mgsvtpp_adresses_1_0_15_0_en.h">
       <Filter>Header Files\hooks</Filter>
     </ClInclude>
     <ClInclude Include="hooks\mgsvtpp_adresses_1_0_15_3_jp.h">

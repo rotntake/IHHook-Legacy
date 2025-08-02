@@ -243,23 +243,28 @@ namespace IHHook {
 		bool IsBuddyTypeValid(int buddyType) {
 			//ZIP: No buddy set
 			if (buddyType == 0) {
+				spdlog::debug("buddy 0");
 				return false;
 			}
 
 			//ZIP: Buddytype attempting to load doesn't match the override buddy type
 			if (buddy.buddyType != 255) {
 				if (buddy.buddyType != buddyType) {
+					spdlog::debug("invalid buddy ovverride");
 					return false;
 				}
 			}
 
 			//ZIP: No paths set
 			if (buddy.horseFpkPath == "" && buddy.dogFpkPath == "" && buddy.quietFpkPath == "" && buddy.walkerGearFpkPath == "") {
+				spdlog::debug("no buddy paths");
 				return false;
 			}
 
+			spdlog::debug("buddy exists");
 			return true;
 		}//IsBuddyTypeValid
+
 
 		ulonglong* LoadBuddyMainFileHook(ulonglong param_1, ulonglong* fileSlotIndex, int buddyType, ulonglong param_4) {
 			spdlog::debug("LoadBuddyMainFileHook buddyType:{}", buddyType);
@@ -270,22 +275,27 @@ namespace IHHook {
 
 			//ZIP: No override or valid buddy? Fallback
 			if (!overrideBuddySystem ) {
+				spdlog::debug("{} {} {} {}", param_1, static_cast<const void*>(fileSlotIndex), buddyType, param_4);
 				return LoadBuddyMainFile(param_1, fileSlotIndex, buddyType, param_4);
 			}
 
+			spdlog::debug("Part LoadBuddyMainFileHook");
 			std::string filePath = "";
 			ulonglong filePath64 = 0;
 			if (buddyType == 1) { 
 				//For D-Horse
+				spdlog::debug("Part LoadBuddyMainFileHook");
 				if (buddy.horseFpkPath != "") {
 					filePath = buddy.horseFpkPath;
 					spdlog::debug("horseFpkPath: {}", filePath);
 					filePath64 = PathCode64(filePath.c_str());
 					LoadFile(fileSlotIndex, filePath64);
 				}
+				spdlog::debug("Part LoadBuddyMainFileHook");
 			}
 			else {
 				//For D-Dog
+				spdlog::debug("Part LoadBuddyMainFileHook");
 				if (buddyType == 2) {
 					if (buddy.dogFpkPath != "") {
 						filePath = buddy.dogFpkPath;
@@ -293,8 +303,10 @@ namespace IHHook {
 						filePath64 = PathCode64(filePath.c_str());
 						LoadFile(fileSlotIndex, filePath64);
 					}
+					spdlog::debug("Part LoadBuddyMainFileHook");
 				}
 				else {
+					spdlog::debug("Part LoadBuddyMainFileHook");
 					ulonglong * fileSlotIndex_01;
 					if (buddyType == 3) { //For Quiet
 						//ZIP: Quiet's costumeType is set to 0 for the mission "A Quiet Exit" ( missionCode 10260 )
@@ -313,6 +325,7 @@ namespace IHHook {
 							return fileSlotIndex_01; 
 						}
 					}
+					spdlog::debug("Part LoadBuddyMainFileHook");
 				
 					if (buddyType != 4) { //If not walker gear nor Quiet.
 						//ZIP: ORIG
@@ -323,6 +336,8 @@ namespace IHHook {
 						fileSlotIndex_01 = LoadFile_01(fileSlotIndex, fileSlotIndex_01);
 						return fileSlotIndex_01;
 					}
+
+					spdlog::debug("Part LoadBuddyMainFileHook");
 			
 					if (buddy.walkerGearFpkPath != "") { //For Walker Gear
 						filePath = buddy.walkerGearFpkPath;
@@ -330,9 +345,12 @@ namespace IHHook {
 						filePath64 = PathCode64(filePath.c_str());
 						LoadFile(fileSlotIndex, filePath64);
 					}
+
+					spdlog::debug("Part LoadBuddyMainFileHook");
 				}
 			}
 
+			spdlog::debug("Part LoadBuddyMainFileHook");
 			return fileSlotIndex;
 		}//LoadBuddyMainFileHook
 
@@ -341,6 +359,7 @@ namespace IHHook {
 		*/
 		ulonglong* LoadBuddyQuietWeaponFpkHook(ulonglong param_1, ulonglong* fileSlotIndex, short param_quietWeaponId) {
 			//ZIP: TODO GetVars for Quiet weapon type
+			spdlog::debug("Part LoadBuddyQuietWeaponFpkHook");
 			if (!overrideBuddyEquipmentSystem || buddyEqp.quietWeaponFpk == "") {
 				return LoadBuddyQuietWeaponFpk(param_1, fileSlotIndex, param_quietWeaponId);
 			}
@@ -349,12 +368,14 @@ namespace IHHook {
 			spdlog::debug("quietWeaponFpk: {}", filePath);
 			ulonglong filePath64 = PathCode64(filePath.c_str());
 			LoadFile(fileSlotIndex, filePath64);
+			spdlog::debug("Part LoadBuddyQuietWeaponFpkHook");
 
 			return fileSlotIndex;
 		}//LoadBuddyQuietWeaponFpkHook
 
 		ulonglong* LoadBuddyWalkerGearWeaponFpkHook(ulonglong param_1, ulonglong* fileSlotIndex, ulonglong param_3, ulonglong param_4) {
 			//ZIP: TODO GetVars for Walker Gear weapon type		
+			spdlog::debug("Part LoadBuddyWalkerGearWeaponFpkHook");
 			if (!overrideBuddyEquipmentSystem || buddyEqp.walkerGearWeaponFpk == "") {
 				return LoadBuddyWalkerGearWeaponFpk(param_1, fileSlotIndex, param_3, param_4);
 			}
@@ -363,12 +384,14 @@ namespace IHHook {
 			spdlog::debug("walkerGearWeaponFpk: {}", filePath);
 			ulonglong filePath64 = PathCode64(filePath.c_str());
 			LoadFile(fileSlotIndex, filePath64);
+			spdlog::debug("Part LoadBuddyWalkerGearWeaponFpkHook");
 
 			return fileSlotIndex;
 		}//LoadBuddyWalkerGearWeaponFpkHook
 
 		//ZIP: Main buddy FPKs contain head and arm content. Leaving this here, just in case.
 		ulonglong* LoadBuddyWalkerGearArmFpkHook(ulonglong param_1, ulonglong* fileSlotIndex, ulonglong param_3, ulonglong param_4) {
+			spdlog::debug("Part LoadBuddyWalkerGearArmFpkHook");
 			if (!overrideBuddyEquipmentSystem || buddyEqp.walkerGearArmFpk == "") {
 				return LoadBuddyWalkerGearArmFpk(param_1, fileSlotIndex, param_3, param_4);
 			}
@@ -377,10 +400,12 @@ namespace IHHook {
 			spdlog::debug("walkerGearArmFpk: {}", filePath);
 			ulonglong filePath64 = PathCode64(filePath.c_str());
 			LoadFile(fileSlotIndex, filePath64);
+			spdlog::debug("Part LoadBuddyWalkerGearArmFpkHook");
 
 			return fileSlotIndex;
 		}//LoadBuddyWalkerGearArmFpkHook
 		ulonglong* LoadBuddyWalkerGearHeadFpkHook(ulonglong param_1, ulonglong* fileSlotIndex, ulonglong param_3, ulonglong param_4) {
+			spdlog::debug("Part LoadBuddyWalkerGearHeadFpkHook");
 			if (!overrideBuddyEquipmentSystem || buddyEqp.walkerGearHeadFpk == "") {
 				return LoadBuddyWalkerGearHeadFpk(param_1, fileSlotIndex, param_3, param_4);
 			}
@@ -389,6 +414,7 @@ namespace IHHook {
 			spdlog::debug("walkerGearHeadFpk: {}", filePath);
 			ulonglong filePath64 = PathCode64(filePath.c_str());
 			LoadFile(fileSlotIndex, filePath64);
+			spdlog::debug("Part LoadBuddyWalkerGearHeadFpkHook");
 
 			return fileSlotIndex;
 		}//LoadBuddyWalkerGearHeadFpkHook

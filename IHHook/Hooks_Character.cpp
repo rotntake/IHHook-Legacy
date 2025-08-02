@@ -850,6 +850,7 @@ namespace IHHook {
 		ulonglong* LoadPlayerBionicArmFpkHook(ulonglong* fileSlotIndex, uint playerType, uint playerPartsType, uint playerHandType){
 			spdlog::debug("LoadPlayerBionicArmFpkHook playerPartsType:{} playerHandType:{}", playerPartsType, playerHandType);
 			
+			spdlog::debug("Part LoadPlayerBionicArmFpkHook");
 			bool useBionicHand = UseBionicArmVanilla(playerType, playerPartsType, playerHandType);
 			//tex useBionicHand is defined by the playerParts ..
 			if (overrideCharacterSystem) {
@@ -858,6 +859,7 @@ namespace IHHook {
 					useBionicHand = character.useBionicHand;
 				}
 			}
+			spdlog::debug("Part LoadPlayerBionicArmFpkHook {}", useBionicHand);
 
 			ulonglong filePath64 = 0;//tex 0 acts as unload/no hand, vanilla has this for 0/NONE index in its fpk/fv2 path64 array
 			if (useBionicHand) {
@@ -879,7 +881,11 @@ namespace IHHook {
 				spdlog::debug("bionicHandFpkPath: {}", filePath);
 				filePath64 = PathCode64(filePath.c_str());
 			}
+			spdlog::debug("Part LoadPlayerBionicArmFpkHook");
+			spdlog::debug(filePath64);
+			spdlog::debug("{}", static_cast<const void*>(fileSlotIndex));
 			LoadFile(fileSlotIndex, filePath64);
+			spdlog::debug("Part LoadPlayerBionicArmFpkHook");
 			return fileSlotIndex;
 		}//LoadPlayerBionicArmFpkHook
 
@@ -968,6 +974,8 @@ namespace IHHook {
 		//even then it seems to need litterally the exact playerCamoType range (or is it playerpartstype hmm) it was for anyway.
 		//again test dd_male swimwear and change it to another skintone supported camo, it dont work.
 		ulonglong* LoadPlayerPartsSkinToneFv2Hook(ulonglong* fileSlotIndex, uint playerType, uint playerPartsType) {
+			spdlog::debug("First Process LoadPlayerPartsSkinToneFv2Hook");
+
 			spdlog::trace(__func__);
 			if (!overrideCharacterSystem) {
 				return LoadPlayerPartsSkinToneFv2(fileSlotIndex, playerType, playerPartsType);
@@ -1078,6 +1086,8 @@ namespace IHHook {
 				spdlog::debug("IsHeadNeededForPartsType {} = {}", i, testHead);
 			}*/
 
+			spdlog::debug("First Process IsHeadNeededForPartsTypeHook");
+
 			//ZIP: Validate player parts type
 			if (!IsPlayerPartsTypeValid(playerPartsType)) {
 				return IsHeadNeededForPartsType(playerPartsType);
@@ -1103,6 +1113,8 @@ namespace IHHook {
 				bool testHead = IsHeadNeededForPartsType(i);
 				spdlog::debug("IsHeadNeededForPartsTypeAndAvatarHook {} = {}", i, testHead);
 			}*/
+
+			spdlog::debug("First Process IsHeadNeededForPartsTypeAndAvatarHook");
 
 			//ZIP: Validate player parts type
 			if (!IsPlayerPartsTypeValid(playerPartsType)) {
@@ -1282,6 +1294,7 @@ namespace IHHook {
 			"/Assets/tpp/fova/chara/avm/avm_hone_v02.fv2",
 		};
 		ulonglong * LoadAvatarOgreHornFpkHook(ulonglong *fileSlotIndex, uint ogreLevel) {
+			spdlog::debug("First Process LoadAvatarOgreHornFpkHook");
 			ulonglong filePath64 = 0;
   
 			std::string filePath = character.avatarHornFpkPath;
@@ -1294,6 +1307,7 @@ namespace IHHook {
 			return fileSlotIndex;
 		}//LoadAvatarOgreHornFpkHook
 		ulonglong * LoadAvatarOgreHornFv2Hook(ulonglong *fileSlotIndex, uint ogreLevel) {
+			spdlog::debug("First Process LoadAvatarOgreHornFv2Hook");
 			ulonglong filePath64 = 0;
   
 			std::string filePath = character.avatarHornFv2Path;
@@ -1309,6 +1323,7 @@ namespace IHHook {
 		void CreateHooks() {
 			spdlog::debug(__func__);
 
+			
 			CREATE_HOOK(LoadPlayerPartsFpk)
 			CREATE_HOOK(LoadPlayerPartsParts)
 			CREATE_HOOK(LoadPlayerCamoFpk)
@@ -1322,26 +1337,28 @@ namespace IHHook {
 			CREATE_HOOK(IsHeadNeededForPartsTypeAndAvatar)
 			CREATE_HOOK(LoadPlayerSnakeFaceFpk)
 			CREATE_HOOK(LoadPlayerSnakeFaceFv2)
-			CREATE_HOOK(CheckPlayerPartsIfShouldApplySkinToneFv2)//DEBUGNOW
+			CREATE_HOOK(CheckPlayerPartsIfShouldApplySkinToneFv2)//DEBUGNOW ///
 			CREATE_HOOK(LoadAvatarOgreHornFpk)
 			CREATE_HOOK(LoadAvatarOgreHornFv2)
-					
+			
+			
 			ENABLEHOOK(LoadPlayerPartsFpk)
 			ENABLEHOOK(LoadPlayerPartsParts)
 			ENABLEHOOK(LoadPlayerCamoFpk)
 			ENABLEHOOK(LoadPlayerCamoFv2)
 			ENABLEHOOK(LoadPlayerBionicArmFpk)
 			ENABLEHOOK(LoadPlayerBionicArmFv2)
-			//ENABLEHOOK(LoadPlayerFacialMotionFpk)
-			//ENABLEHOOK(LoadPlayerFacialMotionMtar)
+			//ENABLEHOOK(LoadPlayerFacialMotionFpk) donlt load
+			//ENABLEHOOK(LoadPlayerFacialMotionMtar) dont load
 			ENABLEHOOK(LoadPlayerPartsSkinToneFv2)
 			ENABLEHOOK(IsHeadNeededForPartsType)
-			ENABLEHOOK(IsHeadNeededForPartsTypeAndAvatar) 
+			ENABLEHOOK(IsHeadNeededForPartsTypeAndAvatar)
 			ENABLEHOOK(LoadPlayerSnakeFaceFpk)
 			ENABLEHOOK(LoadPlayerSnakeFaceFv2)
 			ENABLEHOOK(CheckPlayerPartsIfShouldApplySkinToneFv2)//DEBUGNOW
 			ENABLEHOOK(LoadAvatarOgreHornFpk)
 			ENABLEHOOK(LoadAvatarOgreHornFv2)
+			
 		}//CreateHooks
 
 		int CreateLibs(lua_State* L) {

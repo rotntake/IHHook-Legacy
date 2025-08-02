@@ -49,7 +49,8 @@ namespace IHHook {
 			if (config.logFileLoad) {//DEBUGNOW
 				log = spdlog::basic_logger_st("loadfile", logName);
 				log->set_pattern("%v");//tex raw logging
-					
+				
+				
 				CREATE_HOOK(LoadFileSub)
 				CREATE_HOOK(LoadFile)
 				CREATE_HOOK(LoadFile_01)
@@ -58,6 +59,8 @@ namespace IHHook {
 				CREATE_HOOK(LoadFile_05)
 
 				ENABLEHOOK(LoadFileSub)
+				
+
 				//ENABLEHOOK(LoadFile)
 
 				//ENABLEHOOK(LoadFile_01)

@@ -294,6 +294,7 @@ namespace IHHook {
 				spdlog::warn("Hooks_Lua addr fail: address==NULL");
 			}
 			else {
+				
 				CREATE_HOOK(luaL_openlibs)
 				CREATE_HOOK(lua_newstate)
 				CREATE_HOOK(lua_newthread)
@@ -314,6 +315,8 @@ namespace IHHook {
 				ENABLEHOOK(lua_error)
 				ENABLEHOOK(lua_pcall)
 				ENABLEHOOK(lua_cpcall)
+				
+				
 				//ENABLEHOOK(l_StubbedOut)//DEBUGNOW enabling after lua is init in openlibs see l_StubbedOutHook
 			}//if name##Addr != NULL
 		}//CreateHooks
